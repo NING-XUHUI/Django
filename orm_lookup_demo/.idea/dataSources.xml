@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="MySQL - orm_lookup_demo@localhost" uuid="8b19307a-8b5f-4d46-96e3-ae992cd38ed1">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/orm_lookup_demo</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Django default" uuid="c92ef336-9a7b-4f99-99eb-e57d03eb05d1">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/orm_lookup_demo/settings.py</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/orm_lookup_demo</jdbc-url>
+    </data-source>
+  </component>
+</project>

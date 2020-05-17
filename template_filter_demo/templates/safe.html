@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{ value|safe }}
+# 相当于
+{% autoescape off%}
+    {{value}}
+{% endautoescape %}
+{#{{value}}#}
+</body>
+</html>
