@@ -2,6 +2,8 @@
 
 {% block body %}
     <form action="#" method="post">
+{#        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" id="">#}
+        {% csrf_token %}
         <table>
             <tbody>
             <tr>
@@ -15,6 +17,15 @@
             <tr>
                 <td></td>
                 <td><input type="submit" name="" value="提交" id=""></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+
+                </td>
             </tr>
             </tbody>
         </table>

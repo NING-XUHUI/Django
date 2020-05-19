@@ -26,6 +26,24 @@ class SignupForm(forms.ModelForm):
 
 
 class SigninForm(forms.ModelForm):
+    def get_error(self):
+        new_errors = []
+        errors = self.errors.get_json_data()
+        for messages in errors.values():
+            for key, message in messages:
+                if key == 'message':
+                    new_errors.append(message)
+
+        return new_errors
+
     class Meta:
         model = User
         fields = ['username', 'password']
+        error_messages = {
+            'username': {
+                'min_length': '用户名最小长度为4',
+            },
+            'password': {
+                'min_length': '密码最小长度为6',
+            },
+        }
