@@ -1,8 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
 !/front/package.json
-.DS_Store
-front/.DS_Store
 front/node_modules/
-front/src/images/
-front/src/js/
-front/dist/css/constants.min.css
+
