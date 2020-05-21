@@ -16,6 +16,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 100;
 
   .container {
     width: $pageWidth;
@@ -105,6 +106,8 @@ body {
         height: $bannerHeight;
         background: #0e275e;
         position: relative;
+        overflow: hidden;
+        z-index: 0;
 
         .banner-ul {
           overflow: hidden;
@@ -142,6 +145,32 @@ body {
 
         .right-arrow {
           right: 20px;
+        }
+
+        .page-control-group {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 20px;
+
+          .page-control {
+            margin: 0 auto;
+            overflow: hidden;
+
+            li {
+              width: 10px;
+              height: 10px;
+              border: 1px solid #fff;
+              border-radius: 50%;
+              float: left;
+              margin: 0 8px;
+              cursor: pointer;
+
+              &.active {
+                background: white;
+              }
+            }
+          }
         }
       }
     }

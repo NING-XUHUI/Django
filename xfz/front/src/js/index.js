@@ -1,22 +1,3 @@
-//面向对象
-
-// function Banner() {
-//     //这里的所有代码
-//     //相当于python中的__init__方法代码
-//     console.log('init');
-//     this.person = 'zhiliao'
-// }
-//
-// Banner.prototype.greet = function (word) {
-//     console.log("hello zhiliao",word
-//     )
-// }
-//
-// var banner = new Banner();
-// console.log(banner.person);
-//
-// banner.greet("!!!");
-
 function Banner() {
     this.bannerGroup = $("#banner-group");
     this.index = 0;
@@ -26,7 +7,28 @@ function Banner() {
     this.liList = this.bannerUl.children('li');
     this.bannerCount = this.liList.length;
     this.listenBannerHover();
+    this.bannerWidth = 798;
+    this.pageControl = $(".page-control");
 }
+
+Banner.prototype.initBanner = function () {
+    var self = this;
+    this.bannerUl.css({"width": self.bannerWidth * self.bannerCount});
+};
+
+
+Banner.prototype.initPageControl = function () {
+    var self = this;
+    for (var i = 0; i < self.bannerCount; i++) {
+        var circle = $("<li></li>")
+        self.pageControl.append(circle);
+        if (i === 0) {
+            circle.addClass("active")
+        }
+    }
+    self.pageControl.css({"width": 16 + (self.bannerCount - 1) * 16 + self.bannerCount * 10 + 2 * self.bannerCount});
+};
+
 
 Banner.prototype.toggleArrow = function (isShow) {
     var self = this;
@@ -53,15 +55,21 @@ Banner.prototype.listenBannerHover = function () {
     });
 };
 
+Banner.prototype.animate = function () {
+    var self = this;
+    self.bannerUl.animate({"left": -798 * self.index}, 500);
+    self.pageControl.children('li').eq(self.index).addClass("active").siblings().removeClass('active')
+};
+
 Banner.prototype.loop = function () {
     var self = this;
-    var bannerUl = $("#banner-ul");
     this.timer = setInterval(function () {
-        self.index++;
-        bannerUl.animate({"left": -798 * self.index}, 500);
-        if (self.index >= 3) {
-            self.index = -1;
+        if (self.index >= self.bannerCount - 1) {
+            self.index = 0;
+        } else {
+            self.index++;
         }
+        self.animate();
     }, 2000);
 };
 
@@ -74,22 +82,34 @@ Banner.prototype.listenArrowClick = function () {
         } else {
             self.index--;
         }
-        self.bannerUl.animate({"left": -798 * self.index}, 500);
+        self.animate();
     });
-
     self.rightArrow.click(function () {
         if (self.index === self.bannerCount - 1) {
             self.index = 0;
         } else {
             self.index++;
         }
-        self.bannerUl.animate({"left": -798 * self.index}, 500);
+        self.animate();
+    });
+};
+
+Banner.prototype.listenPageControl = function () {
+    var self = this;
+    self.pageControl.children("li").each(function (index, obj) {
+        $(obj).click(function () {
+            self.index = index;
+            self.animate();
+        });
     });
 };
 
 Banner.prototype.run = function () {
+    this.initBanner();
+    this.initPageControl();
     this.loop();
     this.listenArrowClick();
+    this.listenPageControl();
 };
 
 $(function () {

@@ -10,7 +10,6 @@ var sass = require("gulp-sass");
 var util = require("gulp-util");
 var sourcemaps = require("gulp-sourcemaps");
 
-
 var path = {
     'html': './templates/**/',
     'css': './src/css/',
